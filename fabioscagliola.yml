@@ -1,0 +1,28 @@
+---
+
+- name: Build my site and blog using Hugo
+  hosts: localhost
+  tasks:
+    - name: Build my site and blog using Hugo
+      command: hugo
+      args:
+        chdir: /Users/fabioscagliola/Documents/github.com/fabioscagliola/my-site-and-blog/fabioscagliola
+
+- name: Deploy my site and blog
+  hosts: fabioscagliola
+  vars_files:
+    - vault.yml
+  tasks:
+    - name: Delete the remote folder
+      win_file:
+        path: 'C:\Data\fabioscagliola.com'
+        state: absent
+    - name: Recreate remote folder
+      win_file:
+        path: 'C:\Data\fabioscagliola.com'
+        state: directory
+    - name: Copy the content of the local folder to the remote folder
+      win_copy:
+        src: /Users/fabioscagliola/Documents/github.com/fabioscagliola/my-site-and-blog/fabioscagliola/public/
+        dest: 'C:\Data\fabioscagliola.com'
+
