@@ -1,0 +1,20 @@
+---
+
+- name: Deploy Step
+  hosts: fabioscagliola
+  vars_files:
+    - vault.yml
+  tasks:
+    - name: Delete the remote folder
+      win_file:
+        path: 'C:\Data\step.fabioscagliola.com'
+        state: absent
+    - name: Recreate remote folder
+      win_file:
+        path: 'C:\Data\step.fabioscagliola.com'
+        state: directory
+    - name: Copy the content of the local folder to the remote folder
+      win_copy:
+        src: /Users/fabioscagliola/Documents/github.com/fabioscagliola/Step/src/
+        dest: 'C:\Data\step.fabioscagliola.com'
+
