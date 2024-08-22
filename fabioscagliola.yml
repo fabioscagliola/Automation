@@ -3,10 +3,12 @@
 - name: Build my site and blog using Hugo
   hosts: localhost
   tasks:
+    - name: Delete the public folder
+      command: rm -rf /Users/fabioscagliola/Documents/GitHub/fabioscagliola/my-site-and-blog/fabioscagliola/public
     - name: Build my site and blog using Hugo
       command: hugo
       args:
-        chdir: /Users/fabioscagliola/Documents/github.com/fabioscagliola/my-site-and-blog/fabioscagliola
+        chdir: /Users/fabioscagliola/Documents/GitHub/fabioscagliola/my-site-and-blog/fabioscagliola
 
 - name: Deploy my site and blog
   hosts: fabioscagliola
@@ -23,6 +25,6 @@
         state: directory
     - name: Copy the content of the local folder to the remote folder
       win_copy:
-        src: /Users/fabioscagliola/Documents/github.com/fabioscagliola/my-site-and-blog/fabioscagliola/public/
+        src: /Users/fabioscagliola/Documents/GitHub/fabioscagliola/my-site-and-blog/fabioscagliola/public/
         dest: 'C:\Data\fabioscagliola.com'
 

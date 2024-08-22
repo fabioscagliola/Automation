@@ -15,6 +15,6 @@
         state: directory
     - name: Copy the content of the local folder to the remote folder
       win_copy:
-        src: /Users/fabioscagliola/Documents/github.com/fabioscagliola/Step/src/
+        src: /Users/fabioscagliola/Documents/GitHub/fabioscagliola/Step/src/
         dest: 'C:\Data\step.fabioscagliola.com'
 
