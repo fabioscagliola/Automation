@@ -14,6 +14,14 @@ This playbook builds and deploys my site and blog.
 ansible-playbook fabioscagliola.yml --ask-vault-pass
 ```
 
+### Bernie's website
+
+This playbook deploys Bernie's website.
+
+```
+ansible-playbook laurabernasconi.yml --ask-vault-pass
+```
+
 ### Step
 
 This playbook deploys Step.

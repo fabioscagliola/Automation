@@ -1,0 +1,30 @@
+---
+
+- name: Build Bernie's website using Hugo
+  hosts: localhost
+  tasks:
+    - name: Delete the public folder
+      command: rm -rf /Users/fabioscagliola/Documents/GitHub/fabioscagliola/bernie/website/public
+    - name: Build Bernie's website using Hugo
+      command: hugo
+      args:
+        chdir: /Users/fabioscagliola/Documents/GitHub/fabioscagliola/bernie/website
+
+- name: Deploy Bernie's website
+  hosts: laurabernasconi
+  vars_files:
+    - vault.yml
+  tasks:
+    - name: Delete the remote folder
+      win_file:
+        path: 'C:\Data\laurabernasconi.com'
+        state: absent
+    - name: Recreate remote folder
+      win_file:
+        path: 'C:\Data\laurabernasconi.com'
+        state: directory
+    - name: Copy the content of the local folder to the remote folder
+      win_copy:
+        src: /Users/fabioscagliola/Documents/GitHub/fabioscagliola/bernie/website/public/
+        dest: 'C:\Data\laurabernasconi.com'
+
